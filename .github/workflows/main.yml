@@ -1,0 +1,27 @@
+name: Puppeteer Script Tiktok
+
+on:
+  # schedule:
+  #   - cron: "*/7 * * * *"
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  run-puppeteer:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+        
+      - name: Install dependencies
+        run: npm install puppeteer
+
+      - name: Run Puppeteer script
+        run: node script.js
